@@ -1,20 +1,39 @@
+import React from "react";
+
 type CheckBoxProps = {
-    label: string;
     labelText: string;
     // setValue: (value: string) => void;
+    inputID: string;
     type?: string;
-    className?: string; // Add className to the props
+    className?: string;
+    onChange: (checked: boolean) => void;
 };
 
-const CheckBox = ({label, labelText, type = "checkbox", className}: CheckBoxProps) => {
+const CheckBox = ({labelText, type = "checkbox", className, inputID, onChange}: CheckBoxProps) => {
+    const [checked, setChecked] = React.useState(true);
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setChecked(e.target.checked);
+        onChange(e.target.checked);
+    };
+
     return (
-        <div className={`flex w-fit px-3 items-center ${className}`}>
-            <label htmlFor={label} className="w-fit text-left pr-4 text-purple peer font-nunito">{labelText}</label>
+        <div
+            className={`relative flex items-center justify-between gap-3 border rounded-lg p-4 w-36 h-fit
+            group-hover:scale-110 transition-transform duration-200 font-nunito text-purple ${className} `}>
             <input
-                id={label}
+                className="text-teal focus:ring-teal/50 hover:border-teal/50 border-gray-300 peer rounded-sm w-6 h-6"
+                id={inputID}
+                name={inputID}
                 type={type}
-                className=""
+                value={inputID}
+                checked={checked}
+                onChange={handleChange}
             />
+            <label
+                className="w-fit h-6 cursor-pointer flex flex-row justify-items-start items-center"
+                htmlFor={inputID}>
+                <p className="justify-self-center">{labelText}</p>
+            </label>
         </div>
     );
 }

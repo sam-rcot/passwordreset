@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React, {useRef, useState} from "react";
 import InputField from "../inputfield/InputField.tsx";
 import EmailCopy from "../emailcopy/EmailCopy.tsx";
 import getCopyText from "../../utils/getCopyText.ts";
@@ -13,6 +13,20 @@ type GeneralProps = {
 };
 
 const General = ({handleSubmit, handleInputChange, formValues}: GeneralProps) => {
+    const [checkBoxStates, setCheckBoxStates] = useState({
+        symbolsCheckBox: true,
+        numbersCheckBox: true
+    });
+
+    const handleCheckBoxChange = (id: string, checked: boolean) => {
+        setCheckBoxStates(prevState => ({
+            ...prevState,
+            [id]: checked
+        }));
+    };
+    const handleClick = () => {
+        alert(checkBoxStates.symbolsCheckBox);
+    }
     // Generate the password
     const password = generatePassword();
 
@@ -95,7 +109,13 @@ const General = ({handleSubmit, handleInputChange, formValues}: GeneralProps) =>
             <div ref={emailCopyRef} className="w-11/12">
                 <EmailCopy copyText={getCopyText(template, extendedFormValues)} className="w-fit"/>
             </div>
-            <CheckBox label="test" labelText="Test" type="checkbox"/>
+            <div className="flex flex-col gap-5 border rounded-lg p-2 px-6">
+                <CheckBox inputID="symbolsCheckBox" labelText="Symbols" type="checkbox" className="border-0"
+                          onChange={(checked) => handleCheckBoxChange("symbolsCheckBox", checked)}/>
+                <CheckBox inputID="numbersCheckBox" labelText="Numbers" type="checkbox" className="border-0"
+                          onChange={(checked) => handleCheckBoxChange("numbersCheckBox", checked)}/>
+            </div>
+            <button onClick={handleClick}>Test</button>
             <CopyButton copyRef={emailCopyRef}/>
         </div>
     );
