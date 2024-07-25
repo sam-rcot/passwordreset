@@ -26,7 +26,7 @@ function App() {
     return (
         <>
             <Router>
-                <NavBar />
+                <nav className="flex justify-center"><NavBar/></nav>
                 <main className="h-screen w-screen bg-white text-slate-900 flex justify-center items-center flex-col">
                     <Routes>
                         <Route

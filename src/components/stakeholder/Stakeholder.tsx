@@ -10,9 +10,7 @@ type StakeholderProps = {
 };
 
 const Stakeholder = ({ handleSubmit, handleInputChange, formValues }: StakeholderProps) => {
-    const template: string = `Hello {name}<br>
-Your dog breed is {dogBreed}<br>
-Your dog name is {dogName}`
+    const template: string = ``
     return (
         <div className='flex flex-col gap-5 items-center'>
             <form className="flex gap-5 justify-items-end flex-col" onSubmit={handleSubmit}>
@@ -21,16 +19,16 @@ Your dog name is {dogName}`
                     labelText="Name: "
                     setValue={(value) => handleInputChange('name', value)}
                 />
-                <InputField
-                    label="dogBreed"
-                    labelText="Dog breed:"
-                    setValue={(value) => handleInputChange('dogBreed', value)}
-                />
-                <InputField
-                    label="dogName"
-                    labelText="Dog name:"
-                    setValue={(value) => handleInputChange('dogName', value)}
-                />
+                {/*<InputField*/}
+                {/*    label="dogBreed"*/}
+                {/*    labelText="Dog breed:"*/}
+                {/*    setValue={(value) => handleInputChange('dogBreed', value)}*/}
+                {/*/>*/}
+                {/*<InputField*/}
+                {/*    label="dogName"*/}
+                {/*    labelText="Dog name:"*/}
+                {/*    setValue={(value) => handleInputChange('dogName', value)}*/}
+                {/*/>*/}
 
             </form>
             <EmailCopy copyText={getCopyText(template, formValues)} />
