@@ -5,6 +5,7 @@ import getCopyText from "../../utils/getCopyText.ts";
 import generatePassword from "../../utils/generatePassword.ts";
 import CopyButton from "../copybutton/CopyButton.tsx";
 import CheckBox from "../checkbox/CheckBox.tsx";
+import Slider from "../slider/Slider.tsx";
 
 type GeneralProps = {
     handleSubmit: (event: React.FormEvent) => void;
@@ -27,8 +28,11 @@ const General = ({handleSubmit, handleInputChange, formValues}: GeneralProps) =>
     const handleClick = () => {
         alert(checkBoxStates.symbolsCheckBox);
     }
+    const handlePassword = () => {
+        return generatePassword(checkBoxStates.symbolsCheckBox, checkBoxStates.numbersCheckBox);
+    }
     // Generate the password
-    const password = generatePassword();
+    const password = handlePassword()
 
     // Include the password in formValues
     const extendedFormValues = {...formValues, password};
@@ -110,10 +114,11 @@ const General = ({handleSubmit, handleInputChange, formValues}: GeneralProps) =>
                 <EmailCopy copyText={getCopyText(template, extendedFormValues)} className="w-fit"/>
             </div>
             <div className="flex flex-col gap-5 border rounded-lg p-2 px-6">
-                <CheckBox inputID="symbolsCheckBox" labelText="Symbols" type="checkbox" className="border-0"
+                <CheckBox id="symbolsCheckBox" labelText="Symbols" type="checkbox" className="border-0"
                           onChange={(checked) => handleCheckBoxChange("symbolsCheckBox", checked)}/>
-                <CheckBox inputID="numbersCheckBox" labelText="Numbers" type="checkbox" className="border-0"
+                <CheckBox id="numbersCheckBox" labelText="Numbers" type="checkbox" className="border-0"
                           onChange={(checked) => handleCheckBoxChange("numbersCheckBox", checked)}/>
+                <Slider label="Password length: " id="passwordSlider"/>
             </div>
             <button onClick={handleClick}>Test</button>
             <CopyButton copyRef={emailCopyRef}/>
