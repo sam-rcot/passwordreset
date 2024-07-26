@@ -91,8 +91,8 @@ const General = ({handleSubmit, handleInputChange, formValues}: GeneralProps) =>
     Kind Regards,<br>
     Digital Team`;
     return (
-        <div className="flex flex-col gap-5 items-center">
-            <form className="flex gap-5 items-center content-center justify-center flex-col w-full"
+        <div className="flex flex-col gap-5 items-center w-3/4">
+            <form className="flex gap-5 items-center content-center justify-center flex-col w-11/12"
                   onSubmit={handleSubmit}>
                 <InputField
                     label="name"
