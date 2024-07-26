@@ -1,4 +1,4 @@
-const generatePassword = (useSymbols: boolean, useNumbers: boolean): string => {
+const generatePassword = (useSymbols: boolean, useNumbers: boolean, length: number): string => {
     let password: string = "";
     const loop = (chars: string, passwordLength: number) => {
         for (let i = 0; i < passwordLength; i++) {
@@ -6,39 +6,21 @@ const generatePassword = (useSymbols: boolean, useNumbers: boolean): string => {
             password += chars[randomNumber];
         }
     };
-    // const letters = () => {
-    //     const chars: string =
-    //         "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    //     loop(chars, useNumbers ? 10 : 12);
-    // };
-    // const numbers = () => {
-    //     const chars: string = "0123456789";
-    //     loop(chars, 3);
-    // };
-    // const symbols = () => {
-    //     const chars: string = "-_!£";
-    //     loop(chars, 2);
-    // };
-    const letters: string = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    const numbers: string = "0123456789";
-    const symbols: string = "-_!£";
-
+    const chars = {
+        letters: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
+        numbers: "0123456789",
+        symbols: "-_!£"
+    }
+    const {letters, numbers, symbols} = chars;
+    const allChars = `${letters}${numbers}${symbols}`;
     const characters = (chars: string, length: number) => {
         loop(chars, length);
     }
+    characters(letters, length - 4)
     useNumbers ? characters(numbers, 2) : characters(letters, 2)
     useSymbols ? characters(symbols, 2) : characters(letters, 2)
-    characters(letters, 10)
-    // if (useNumbers) {
-    //     characters(numbers, 2)
-    // }
-    // if (useSymbols) {
-    //     characters(symbols, 2)
-    // }
-    // letters();
-    // numbers();
-    // symbols();
 
+    password.length < length ? characters(allChars, length - password.length) : password = password.slice(0, length)
     return password
         .split("")
         .sort(function () {

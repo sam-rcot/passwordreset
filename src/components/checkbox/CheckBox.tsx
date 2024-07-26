@@ -18,7 +18,7 @@ const CheckBox = ({labelText, type = "checkbox", className, id, onChange}: Check
 
     return (
         <div
-            className={`relative flex items-center justify-between gap-3 border rounded-lg p-4 w-36 h-fit
+            className={`relative flex items-center justify-between gap-3 border rounded-lg p-4 w-full h-fit
             group-hover:scale-110 transition-transform duration-200 font-nunito text-purple ${className} `}>
             <input
                 className="text-teal focus:ring-teal/50 hover:border-teal/50 border-gray-300 peer rounded-sm w-6 h-6"
@@ -32,7 +32,7 @@ const CheckBox = ({labelText, type = "checkbox", className, id, onChange}: Check
             <label
                 className="w-fit h-6 cursor-pointer flex flex-row justify-items-start items-center"
                 htmlFor={id}>
-                <p className="justify-self-center">{labelText}</p>
+                <p className="">{labelText}</p>
             </label>
         </div>
     );
