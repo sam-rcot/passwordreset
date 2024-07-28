@@ -1,3 +1,4 @@
+// File used to generate templates by 'createComponent.js', do not import or delete
 type TemplateProps = {
     exampleProp: string
 };
