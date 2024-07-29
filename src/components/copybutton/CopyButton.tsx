@@ -4,7 +4,10 @@ type CopyButtonProps = {
     copyRef: React.RefObject<HTMLDivElement>;
 };
 
-const CopyButton = ({ copyRef }: CopyButtonProps) => {
+const CopyButton = ({copyRef}: CopyButtonProps) => {
+    const handleClick = () => {
+        handleCopy()
+    }
     const handleCopy = () => {
         const resultContainerElement = copyRef.current;
 
@@ -30,8 +33,11 @@ const CopyButton = ({ copyRef }: CopyButtonProps) => {
     };
 
     return (
-        <button onClick={handleCopy} className="mt-5 px-8 py-3 text-dark-teal font-bold bg-teal rounded-3xl
-        hover:bg-teal/90 hover:text-dark-teal/90 transition-colors duration-200 ease-[cubic-bezier(0.4, 0.0, 0.2, 1)]">
+        <button onClick={handleClick}
+                className="px-8 py-3 text-dark-teal font-bold bg-teal rounded-3xl
+        hover:bg-teal/70 hover:text-dark-teal/90 hover:scale-110
+        active:scale-95
+        transition-all duration-200 ease-in-out">
             Copy text
         </button>
     );

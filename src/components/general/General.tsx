@@ -6,6 +6,7 @@ import generatePassword from "../../utils/generatePassword.ts";
 import CopyButton from "../copybutton/CopyButton.tsx";
 import CheckBox from "../checkbox/CheckBox.tsx";
 import Slider from "../slider/Slider.tsx";
+import OptionsContainer from "../optionscontainer/OptionsContainer.tsx";
 
 type GeneralProps = {
     handleSubmit: (event: React.FormEvent) => void;
@@ -90,8 +91,9 @@ const General = ({handleSubmit, handleInputChange, formValues}: GeneralProps) =>
     <br>
     Kind Regards,<br>
     Digital Team`;
+
     return (
-        <div className="flex flex-col gap-5 items-center w-3/4">
+        <div className="flex flex-col gap-3 items-center w-3/4">
             <form className="flex gap-5 items-center content-center justify-center flex-col w-11/12"
                   onSubmit={handleSubmit}>
                 <InputField
@@ -111,31 +113,33 @@ const General = ({handleSubmit, handleInputChange, formValues}: GeneralProps) =>
             <div ref={emailCopyRef} className="w-11/12">
                 <EmailCopy copyText={getCopyText(template, extendedFormValues)} className="w-fit"/>
             </div>
-            <div className="flex flex-col border rounded-lg p-2 px-6 container items-center w-11/12">
-                <div className="flex flex-col items-center w-fit">
-                    <CheckBox
-                        id="symbolsCheckBox"
-                        labelText="Symbols"
-                        type="checkbox"
-                        className="border-0"
-                        onChange={(checked) => handleCheckBoxChange("symbolsCheckBox", checked)}
-                    />
-                    <CheckBox
-                        id="numbersCheckBox"
-                        labelText="Numbers"
-                        type="checkbox"
-                        className="border-0"
-                        onChange={(checked) => handleCheckBoxChange("numbersCheckBox", checked)}
-                    />
-                </div>
-                <div className="w-full flex justify-center">
-                    <Slider
-                        label="Password length:"
-                        id="passwordSlider"
-                        value={sliderValue}
-                        onChange={setSliderValue}
-                    />
-                </div>
+            <div className="flex flex-col border rounded-lg py-2 px-6 container items-center w-11/12 justify-center gap-3">
+                <OptionsContainer containerText="password options">
+                    <div className="flex flex-row items-center justify-center w-48">
+                        <CheckBox
+                            id="symbolsCheckBox"
+                            labelText="Symbols"
+                            type="checkbox"
+                            className="border-0"
+                            onChange={(checked) => handleCheckBoxChange("symbolsCheckBox", checked)}
+                        />
+                        <CheckBox
+                            id="numbersCheckBox"
+                            labelText="Numbers"
+                            type="checkbox"
+                            className="border-0"
+                            onChange={(checked) => handleCheckBoxChange("numbersCheckBox", checked)}
+                        />
+                    </div>
+                    <div className="w-48 flex justify-center">
+                        <Slider
+                            label="Password length:"
+                            id="passwordSlider"
+                            value={sliderValue}
+                            onChange={setSliderValue}
+                        />
+                    </div>
+                </OptionsContainer>
                 <CopyButton copyRef={emailCopyRef}/>
             </div>
 
