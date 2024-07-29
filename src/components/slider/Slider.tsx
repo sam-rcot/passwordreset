@@ -16,7 +16,7 @@ const Slider = ({label, id, type = "range", value, onChange}: SliderProps) => {
 
     return (
         <div className="flex flex-col align-middle items-center gap-2 w-fit h-fit p-4 rounded-md">
-            <div className="flex align-middle w-fit h-fit p-4 rounded-md">
+            <div className="flex align-middle w-48 h-fit rounded-md">
                 <input id={id}
                        name={id}
                        type={type}
@@ -24,7 +24,7 @@ const Slider = ({label, id, type = "range", value, onChange}: SliderProps) => {
                        min="8"
                        max="20"
                        onChange={handleChange}
-                       className="appearance-none -webkit-slider-runnable-track:bg-teal"/>
+                       className="appearance-none w-48"/>
             </div>
             <label htmlFor={id} className="font-nunito text-purple text-xs">{label} <span
                 className="">{value}</span></label>

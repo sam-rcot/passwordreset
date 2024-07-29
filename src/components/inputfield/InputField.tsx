@@ -10,7 +10,7 @@ type InputFieldProps = {
 const InputField = ({ label, labelText, setValue, type = "text", className, placeholder}: InputFieldProps) => {
     return (
         <div className={`flex flex-col w-full ${className}`}>
-            <label htmlFor={label} className="w-fit text-left pr-4 text-purple peer font-nunito mb-1">{labelText}</label>
+            <label htmlFor={label} className="w-fit text-left pr-4 text-purple peer font-nunito mb-0.5">{labelText}</label>
             <input
                 id={label}
                 type={type}
