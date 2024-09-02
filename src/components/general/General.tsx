@@ -125,7 +125,7 @@ Kind Regards,
 Digital Team`;
 
   return (
-    <div className="flex w-3/4 flex-col items-center gap-3">
+    <div className="flex w-full max-w-5xl flex-col items-center gap-3 px-4">
       <form
         className="flex w-full flex-col content-center items-center justify-center gap-5"
         onSubmit={handleSubmit}
@@ -135,6 +135,7 @@ Digital Team`;
           labelText="First name"
           setValue={(value) => handleInputChange('name', value)}
           placeholder="Joanna"
+          className="w-full max-w-md"
         />
         <InputField
           label="email"
@@ -142,17 +143,18 @@ Digital Team`;
           setValue={(value) => handleInputChange('email', value)}
           type="email"
           placeholder="JoannaSmith@OT.co.uk"
+          className="w-full max-w-md"
         />
       </form>
-      <div ref={emailCopyRef} className="w-full">
+      <div ref={emailCopyRef} className="w-full max-w-3xl">
         <EmailCopy
           copyText={getCopyText(htmlTemplate, extendedFormValues)}
-          className="w-fit"
+          className="w-full"
         />
       </div>
-      <div className="container flex w-full flex-col items-center justify-center gap-2 rounded-lg border px-6 py-2">
+      <div className="container flex w-full max-w-3xl flex-col items-center justify-center gap-2 rounded-lg border px-6 py-2">
         <OptionsContainer containerText="password options">
-          <div className="flex w-48 flex-row items-center justify-center">
+          <div className="flex w-full max-w-xs flex-row items-center justify-center">
             <CheckBox
               id="symbolsCheckBox"
               labelText="Symbols"
@@ -172,7 +174,7 @@ Digital Team`;
               }
             />
           </div>
-          <div className="flex w-48 justify-center">
+          <div className="flex w-full max-w-xs justify-center">
             <Slider
               label="Password length:"
               id="passwordSlider"
@@ -181,14 +183,14 @@ Digital Team`;
             />
           </div>
         </OptionsContainer>
-        <div className="flex w-max flex-col items-center justify-around gap-2">
+        <div className="flex w-full max-w-sm flex-col items-center justify-around gap-2">
           <PasswordButton
             buttonText="New password"
             onClick={generateNewPassword}
-            className="w-96"
+            className="w-full"
           />
           <div
-            className="peer flex w-96 flex-row items-center justify-center gap-3"
+            className="peer flex w-full flex-row items-center justify-center gap-3"
             onMouseEnter={() => handleEnter()}
             onMouseLeave={() => handleLeave()}
           >
@@ -207,10 +209,11 @@ Digital Team`;
           </div>
         </div>
       </div>
-      {/*<button className="w-96 rounded-3xl bg-teal py-4">Test</button>*/}
       {isEdge && (
         <div
-          className={`flex w-96 flex-col text-xxs text-dark-teal opacity-0 transition-all duration-300 ${mouseOver && count <= 10 ? 'opacity-100' : ''}`}
+          className={`flex w-full max-w-sm flex-col text-xxs text-dark-teal opacity-0 transition-all duration-300 ${
+            mouseOver && count <= 10 ? 'opacity-100' : ''
+          }`}
         >
           <p className="text-center">
             The email button won't work in Microsoft Edge unless you have a
@@ -219,7 +222,7 @@ Digital Team`;
 
           <a
             id="outlookInfo"
-            className="w-96 text-center text-xxs text-purple underline transition-all duration-300"
+            className="w-full text-center text-xxs text-purple underline transition-all duration-300"
             href="https://support.microsoft.com/en-gb/office/make-outlook-the-default-program-for-email-contacts-and-calendar-ff7990c4-54c4-4390-8fe3-c0285226f021"
           >
             Make Outlook the default program for email, contacts, and calendar
