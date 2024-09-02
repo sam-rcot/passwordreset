@@ -186,7 +186,7 @@ Digital Team`;
               <EmailButton
                 template={plainTextTemplate}
                 email={formValues.email}
-                subject="Your new temporary password"
+                subject="RCOT – your new temporary password"
                 disabled={!isFormValid}
                 className={!isFormValid ? "cursor-not-allowed opacity-50 " : ""}
               />
