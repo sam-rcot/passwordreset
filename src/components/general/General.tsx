@@ -127,7 +127,7 @@ Digital Team`;
   return (
     <div className="flex w-full max-w-5xl flex-col items-center gap-3 px-4">
       <form
-        className="flex w-full flex-col content-center items-center justify-center gap-5"
+        className="flex w-full max-w-3xl shrink grow flex-col content-center items-center justify-center gap-5"
         onSubmit={handleSubmit}
       >
         <InputField
@@ -135,7 +135,7 @@ Digital Team`;
           labelText="First name"
           setValue={(value) => handleInputChange('name', value)}
           placeholder="Joanna"
-          className="w-full max-w-md"
+          className="w-full shrink grow"
         />
         <InputField
           label="email"
@@ -143,7 +143,7 @@ Digital Team`;
           setValue={(value) => handleInputChange('email', value)}
           type="email"
           placeholder="JoannaSmith@OT.co.uk"
-          className="w-full max-w-md"
+          className="w-full shrink grow"
         />
       </form>
       <div ref={emailCopyRef} className="w-full max-w-3xl">
