@@ -1,41 +1,50 @@
-import React from "react";
+import React from 'react';
 
 type CheckBoxProps = {
-    labelText: string;
-    // setValue: (value: string) => void;
-    id: string;
-    type?: string;
-    className?: string;
-    onChange: (checked: boolean) => void;
+  labelText: string;
+  // setValue: (value: string) => void;
+  id: string;
+  type?: string;
+  className?: string;
+  onChange: (checked: boolean) => void;
 };
 
-const CheckBox = ({labelText, type = "checkbox", className, id, onChange}: CheckBoxProps) => {
-    const [checked, setChecked] = React.useState(true);
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setChecked(e.target.checked);
-        onChange(e.target.checked);
-    };
+const CheckBox = ({
+  labelText,
+  type = 'checkbox',
+  className,
+  id,
+  onChange,
+  ...props
+}: CheckBoxProps) => {
+  const [checked, setChecked] = React.useState(true);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setChecked(e.target.checked);
+    onChange(e.target.checked);
+  };
 
-    return (
-        <div
-            className={`relative flex items-center justify-between gap-3 border rounded-lg p-4 w-full h-fit
-            group-hover:scale-110 transition-transform duration-200 font-nunito text-dark-teal ${className} `}>
-            <input
-                className="text-dark-teal focus:ring-teal/50 hover:border-teal/50 border-gray-300 peer rounded-sm w-6 h-6"
-                id={id}
-                name={id}
-                type={type}
-                value={id}
-                checked={checked}
-                onChange={handleChange}
-            />
-            <label
-                className="w-fit h-6 cursor-pointer flex flex-row justify-items-start items-center"
-                htmlFor={id}>
-                <p className="">{labelText}</p>
-            </label>
-        </div>
-    );
-}
+  return (
+    <div
+      className={`relative flex h-fit w-full items-center justify-between gap-3 rounded-lg border p-4 font-nunito text-dark-teal transition-transform duration-200 group-hover:scale-110 ${className} `}
+    >
+      <input
+        className="peer h-6 w-6 rounded-sm border-gray-300 text-dark-teal hover:border-teal/50 focus:ring-teal/50"
+        id={id}
+        name={id}
+        type={type}
+        value={id}
+        checked={checked}
+        onChange={handleChange}
+      />
+      <label
+        className="flex h-6 w-fit cursor-pointer flex-row items-center justify-items-start"
+        htmlFor={id}
+        {...props}
+      >
+        <p className="">{labelText}</p>
+      </label>
+    </div>
+  );
+};
 
 export default CheckBox;

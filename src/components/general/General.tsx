@@ -163,6 +163,7 @@ Digital Team`;
               labelText="Symbols"
               type="checkbox"
               className="border-0"
+              data-button-id="symbolsButton"
               onChange={(checked) =>
                 handleCheckBoxChange('symbolsCheckBox', checked)
               }
@@ -172,6 +173,7 @@ Digital Team`;
               labelText="Numbers"
               type="checkbox"
               className="border-0"
+              data-button-id="numbersCheckBox"
               onChange={(checked) =>
                 handleCheckBoxChange('numbersCheckBox', checked)
               }
@@ -183,6 +185,7 @@ Digital Team`;
               id="passwordSlider"
               value={sliderValue}
               onChange={setSliderValue}
+              data-slider-value={sliderValue}
             />
           </div>
         </OptionsContainer>
