@@ -127,7 +127,7 @@ Digital Team`;
   return (
     <div className="flex w-3/4 flex-col items-center gap-3">
       <form
-        className="flex w-96 flex-col content-center items-center justify-center gap-5"
+        className="flex w-full flex-col content-center items-center justify-center gap-5"
         onSubmit={handleSubmit}
       >
         <InputField
