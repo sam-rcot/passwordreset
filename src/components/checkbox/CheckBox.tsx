@@ -2,7 +2,6 @@ import React from 'react';
 
 type CheckBoxProps = {
   labelText: string;
-  // setValue: (value: string) => void;
   id: string;
   type?: string;
   className?: string;
@@ -25,7 +24,7 @@ const CheckBox = ({
 
   return (
     <div
-      className={`relative flex h-fit w-full items-center justify-between gap-3 rounded-lg border p-4 font-nunito text-dark-teal transition-transform duration-200 group-hover:scale-110 ${className} `}
+      className={`relative flex h-fit w-full items-center justify-between gap-3 rounded-lg border p-4 font-nunito text-dark-teal transition-transform duration-200 group-hover:scale-110 ${className}`}
     >
       <input
         className="peer h-6 w-6 rounded-sm border-gray-300 text-dark-teal hover:border-teal/50 focus:ring-teal/50"
@@ -39,7 +38,7 @@ const CheckBox = ({
       <label
         className="flex h-6 w-fit cursor-pointer flex-row items-center justify-items-start"
         htmlFor={id}
-        {...props}
+        {...props} // This passes the data-button-id to the label
       >
         <p className="">{labelText}</p>
       </label>
