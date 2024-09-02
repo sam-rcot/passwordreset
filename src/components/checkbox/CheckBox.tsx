@@ -19,9 +19,9 @@ const CheckBox = ({labelText, type = "checkbox", className, id, onChange}: Check
     return (
         <div
             className={`relative flex items-center justify-between gap-3 border rounded-lg p-4 w-full h-fit
-            group-hover:scale-110 transition-transform duration-200 font-nunito text-purple ${className} `}>
+            group-hover:scale-110 transition-transform duration-200 font-nunito text-dark-teal ${className} `}>
             <input
-                className="text-teal focus:ring-teal/50 hover:border-teal/50 border-gray-300 peer rounded-sm w-6 h-6"
+                className="text-dark-teal focus:ring-teal/50 hover:border-teal/50 border-gray-300 peer rounded-sm w-6 h-6"
                 id={id}
                 name={id}
                 type={type}

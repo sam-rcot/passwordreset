@@ -26,7 +26,7 @@ const Slider = ({label, id, type = "range", value, onChange}: SliderProps) => {
                        onChange={handleChange}
                        className="appearance-none w-48"/>
             </div>
-            <label htmlFor={id} className="font-nunito text-purple text-xs">{label} <span
+            <label htmlFor={id} className="font-nunito text-dark-teal text-xs">{label} <span
                 className="">{value}</span></label>
         </div>
     )

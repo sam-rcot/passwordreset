@@ -29,6 +29,9 @@ const General = ({
   const [sliderValue, setSliderValue] = useState(14);
   const [password, setPassword] = useState<string>('');
   const [isFormValid, setIsFormValid] = useState(false);
+  const [isEdge, setIsEdge] = useState(false);
+
+
   useEffect(() => {
     const isValid = formValues.name?.trim() && formValues.email?.trim();
     setIsFormValid(!!isValid);
@@ -45,6 +48,12 @@ const General = ({
   useEffect(() => {
     generateNewPassword();
   }, [checkBoxStates, sliderValue]);
+
+  useEffect(() => {
+    // Detect if the browser is Microsoft Edge
+    const isEdgeBrowser = /Edg/.test(navigator.userAgent);
+    setIsEdge(isEdgeBrowser);
+  }, []);
 
   const handleCheckBoxChange = (id: string, checked: boolean) => {
     setCheckBoxStates((prevState) => ({
@@ -130,7 +139,7 @@ Digital Team`;
           className="w-fit"
         />
       </div>
-      <div className="container flex w-full flex-col items-center justify-center gap-3 rounded-lg border px-6 py-2">
+      <div className="container flex w-full flex-col items-center justify-center gap-2 rounded-lg border px-6 py-2">
         <OptionsContainer containerText="password options">
           <div className="flex w-48 flex-row items-center justify-center">
             <CheckBox
@@ -165,22 +174,34 @@ Digital Team`;
           <PasswordButton
             buttonText="New password"
             onClick={generateNewPassword}
-            className="w-full"
+            className="w-96"
           />
-          <div className="flex w-full flex-row items-center justify-center gap-2">
-            <CopyButton
-              copyRef={emailCopyRef}
-              disabled={!isFormValid}
-              className={!isFormValid ? 'cursor-not-allowed opacity-50' : ''}
-            />
-            <EmailButton
-              template={plainTextTemplate}
-              email={formValues.email}
-              subject="Your new temporary password"
-              disabled={!isFormValid}
-              className={!isFormValid ? 'cursor-not-allowed opacity-50' : ''}
-            />
+          <div className="flex flex-col items-center justify-center gap-2 group">
+            <div className="flex w-96 flex-row items-center justify-center gap-3">
+              <CopyButton
+                copyRef={emailCopyRef}
+                disabled={!isFormValid}
+                className={!isFormValid ? "cursor-not-allowed opacity-50" : ""}
+              />
+              <EmailButton
+                template={plainTextTemplate}
+                email={formValues.email}
+                subject="Your new temporary password"
+                disabled={!isFormValid}
+                className={!isFormValid ? "cursor-not-allowed opacity-50 " : ""}
+              />
+            </div>
+            {isEdge && (
+              <div className="w-96 opacity-0 text-xxs font-nunito text-dark-teal text-center group-hover:opacity-100">
+                <p className="text-center">
+                  The email button won't work in Microsoft Edge unless you
+                  have a default email client set up.
+                </p>
+                  <a className="underline text-link-blue" href="https://support.microsoft.com/en-gb/office/make-outlook-the-default-program-for-email-contacts-and-calendar-ff7990c4-54c4-4390-8fe3-c0285226f021">Make Outlook the default program for email, contacts, and calendar</a>
+              </div>
+            )}
           </div>
+
         </div>
       </div>
     </div>
