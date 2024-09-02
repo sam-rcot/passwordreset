@@ -30,12 +30,14 @@ const General = ({
   const [password, setPassword] = useState<string>('');
   const [isFormValid, setIsFormValid] = useState(false);
   const [isEdge, setIsEdge] = useState(false);
-
+  const [mouseOver, setMouseOver] = useState(false);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     const isValid = formValues.name?.trim() && formValues.email?.trim();
     setIsFormValid(!!isValid);
   }, [formValues.name, formValues.email]);
+
   const generateNewPassword = () => {
     const newPassword = generatePassword(
       checkBoxStates.symbolsCheckBox,
@@ -61,7 +63,16 @@ const General = ({
       [id]: checked,
     }));
   };
-
+  const handleEnter = () => {
+    setMouseOver(true);
+    setCount(() => count + 1);
+    console.log(count);
+  };
+  const handleLeave = () => {
+    setTimeout(() => setMouseOver(false), 5000);
+    setCount(() => count + 1);
+    console.log(count);
+  };
   const emailCopyRef = useRef<HTMLDivElement>(null);
 
   const extendedFormValues = { ...formValues, password };
@@ -176,34 +187,45 @@ Digital Team`;
             onClick={generateNewPassword}
             className="w-96"
           />
-          <div className="flex flex-col items-center justify-center gap-2 group">
-            <div className="flex w-96 flex-row items-center justify-center gap-3">
-              <CopyButton
-                copyRef={emailCopyRef}
-                disabled={!isFormValid}
-                className={!isFormValid ? "cursor-not-allowed opacity-50" : ""}
-              />
-              <EmailButton
-                template={plainTextTemplate}
-                email={formValues.email}
-                subject="RCOT – your new temporary password"
-                disabled={!isFormValid}
-                className={!isFormValid ? "cursor-not-allowed opacity-50 " : ""}
-              />
-            </div>
-            {isEdge && (
-              <div className="w-96 opacity-0 text-xxs font-nunito text-dark-teal text-center group-hover:opacity-100">
-                <p className="text-center">
-                  The email button won't work in Microsoft Edge unless you
-                  have a default email client set up.
-                </p>
-                  <a className="underline text-link-blue" href="https://support.microsoft.com/en-gb/office/make-outlook-the-default-program-for-email-contacts-and-calendar-ff7990c4-54c4-4390-8fe3-c0285226f021">Make Outlook the default program for email, contacts, and calendar</a>
-              </div>
-            )}
+          <div
+            className="peer flex w-96 flex-row items-center justify-center gap-3"
+            onMouseEnter={() => handleEnter()}
+            onMouseLeave={() => handleLeave()}
+          >
+            <CopyButton
+              copyRef={emailCopyRef}
+              disabled={!isFormValid}
+              className={!isFormValid ? 'cursor-not-allowed opacity-50' : ''}
+            />
+            <EmailButton
+              template={plainTextTemplate}
+              email={formValues.email}
+              subject="RCOT – your new temporary password"
+              disabled={!isFormValid}
+              className={!isFormValid ? 'cursor-not-allowed opacity-50' : ''}
+            />
           </div>
-
         </div>
       </div>
+      {/*<button className="w-96 rounded-3xl bg-teal py-4">Test</button>*/}
+      {isEdge && (
+        <div
+          className={`flex w-96 flex-col text-xxs text-dark-teal opacity-0 transition-all duration-300 ${mouseOver && count <= 10 ? 'opacity-100' : ''}`}
+        >
+          <p className="text-center">
+            The email button won't work in Microsoft Edge unless you have a
+            default email client set up.
+          </p>
+
+          <a
+            id="outlookInfo"
+            className="w-96 text-center text-xxs text-purple underline transition-all duration-300"
+            href="https://support.microsoft.com/en-gb/office/make-outlook-the-default-program-for-email-contacts-and-calendar-ff7990c4-54c4-4390-8fe3-c0285226f021"
+          >
+            Make Outlook the default program for email, contacts, and calendar
+          </a>
+        </div>
+      )}
     </div>
   );
 };
