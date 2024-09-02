@@ -153,7 +153,10 @@ Digital Team`;
         />
       </div>
       <div className="container flex w-full max-w-3xl flex-col items-center justify-center gap-2 rounded-lg border px-6 py-2">
-        <OptionsContainer containerText="password options">
+        <OptionsContainer
+          containerText="password options"
+          data-button-id="optionsButton"
+        >
           <div className="flex w-full max-w-xs flex-row items-center justify-center">
             <CheckBox
               id="symbolsCheckBox"
@@ -188,6 +191,7 @@ Digital Team`;
             buttonText="New password"
             onClick={generateNewPassword}
             className="w-full"
+            data-button-id="passwordButton"
           />
           <div
             className="peer flex w-full flex-row items-center justify-center gap-3"
@@ -198,6 +202,7 @@ Digital Team`;
               copyRef={emailCopyRef}
               disabled={!isFormValid}
               className={!isFormValid ? 'cursor-not-allowed opacity-50' : ''}
+              data-button-id="copyButton"
             />
             <EmailButton
               template={plainTextTemplate}
@@ -205,6 +210,7 @@ Digital Team`;
               subject="RCOT – your new temporary password"
               disabled={!isFormValid}
               className={!isFormValid ? 'cursor-not-allowed opacity-50' : ''}
+              data-button-id="emailButton"
             />
           </div>
         </div>

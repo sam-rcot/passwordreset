@@ -14,6 +14,7 @@ const EmailButton: React.FC<EmailButtonProps> = ({
   subject,
   disabled = false,
   className = '',
+  ...props
 }) => {
   const encodedBody = encodeURIComponent(template);
   const encodedSubject = encodeURIComponent(subject);
@@ -31,6 +32,7 @@ const EmailButton: React.FC<EmailButtonProps> = ({
       <a
         href={disabled ? undefined : mailtoLink}
         onClick={(e) => disabled && e.preventDefault()}
+        {...props}
       >
         Send Email
       </a>

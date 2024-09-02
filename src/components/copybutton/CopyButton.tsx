@@ -11,6 +11,7 @@ const CopyButton: React.FC<CopyButtonProps> = ({
   copyRef,
   disabled = false,
   className = '',
+  ...props
 }) => {
   const handleClick = () => {
     if (!disabled) {
@@ -48,6 +49,7 @@ const CopyButton: React.FC<CopyButtonProps> = ({
       buttonText="Copy text"
       disabled={disabled}
       className={className}
+      {...props}
     />
   );
 };

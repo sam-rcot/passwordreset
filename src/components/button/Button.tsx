@@ -14,6 +14,7 @@ const Button = ({
   id,
   disabled = false,
   className = '',
+  ...props
 }: ButtonProps) => {
   return (
     <button
@@ -25,6 +26,7 @@ const Button = ({
       } ${className}`}
       onClick={disabled ? undefined : onClick} // Disable onClick if disabled
       disabled={disabled} // Ensure the button is disabled in the DOM
+      {...props}
     >
       {children ? children : buttonText}
     </button>

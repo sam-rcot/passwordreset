@@ -10,6 +10,7 @@ const PasswordButton = ({
   buttonText,
   onClick,
   className,
+  ...props
 }: PasswordButtonProps) => {
   return (
     <Button
@@ -17,6 +18,7 @@ const PasswordButton = ({
       id="PasswordButton"
       buttonText={buttonText}
       className={className}
+      {...props}
     />
   );
 };
