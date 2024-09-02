@@ -1,13 +1,15 @@
 import React from 'react';
+import Button from '../button/Button.tsx';
 
 type CopyButtonProps = {
     copyRef: React.RefObject<HTMLDivElement>;
 };
 
-const CopyButton = ({copyRef}: CopyButtonProps) => {
+const CopyButton = ({ copyRef }: CopyButtonProps) => {
     const handleClick = () => {
-        handleCopy()
-    }
+        handleCopy();
+    };
+
     const handleCopy = () => {
         const resultContainerElement = copyRef.current;
 
@@ -33,13 +35,10 @@ const CopyButton = ({copyRef}: CopyButtonProps) => {
     };
 
     return (
-        <button onClick={handleClick}
-                className="px-8 py-3 text-dark-teal font-bold bg-teal rounded-3xl
-        hover:bg-teal/70 hover:text-dark-teal/90 hover:scale-110
-        active:scale-95
-        transition-all duration-200 ease-in-out">
-            Copy text
-        </button>
+        <Button
+            onClick={handleClick} // Pass the click handler to the Button component
+            buttonText="Copy text" // Provide the button text
+        />
     );
 };
 

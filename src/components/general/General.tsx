@@ -7,6 +7,7 @@ import CopyButton from "../copybutton/CopyButton.tsx";
 import CheckBox from "../checkbox/CheckBox.tsx";
 import Slider from "../slider/Slider.tsx";
 import OptionsContainer from "../optionscontainer/OptionsContainer.tsx";
+import PasswordButton from "../passwordbutton/PasswordButton.tsx";
 
 type GeneralProps = {
     handleSubmit: (event: React.FormEvent) => void;
@@ -14,30 +15,35 @@ type GeneralProps = {
     formValues: { [key: string]: string };
 };
 
-const General = ({handleSubmit, handleInputChange, formValues}: GeneralProps) => {
+const General = ({ handleSubmit, handleInputChange, formValues }: GeneralProps) => {
     const [checkBoxStates, setCheckBoxStates] = useState({
         symbolsCheckBox: true,
-        numbersCheckBox: true
+        numbersCheckBox: true,
     });
 
     const [sliderValue, setSliderValue] = useState(14);
     const [password, setPassword] = useState<string>("");
 
-    useEffect(() => {
+    // Function to handle password generation
+    const generateNewPassword = () => {
         const newPassword = generatePassword(checkBoxStates.symbolsCheckBox, checkBoxStates.numbersCheckBox, sliderValue);
         setPassword(newPassword);
+    };
+
+    useEffect(() => {
+        generateNewPassword();
     }, [checkBoxStates, sliderValue]);
 
     const handleCheckBoxChange = (id: string, checked: boolean) => {
-        setCheckBoxStates(prevState => ({
+        setCheckBoxStates((prevState) => ({
             ...prevState,
-            [id]: checked
+            [id]: checked,
         }));
     };
 
     const emailCopyRef = useRef<HTMLDivElement>(null);
 
-    const extendedFormValues = {...formValues, password};
+    const extendedFormValues = { ...formValues, password };
 
     const template: string = `
     Hi${formValues.name ? ` ${formValues.name[0].toUpperCase()}${formValues.name.slice(1, formValues.name.length)}` : ''},<br/><br/>
@@ -94,24 +100,26 @@ const General = ({handleSubmit, handleInputChange, formValues}: GeneralProps) =>
 
     return (
         <div className="flex flex-col gap-3 items-center w-3/4">
-            <form className="flex gap-5 items-center content-center justify-center flex-col w-11/12"
-                  onSubmit={handleSubmit}>
+            <form
+                className="flex gap-5 items-center content-center justify-center flex-col w-11/12"
+                onSubmit={handleSubmit}
+            >
                 <InputField
                     label="name"
                     labelText="First name"
-                    setValue={(value) => handleInputChange('name', value)}
+                    setValue={(value) => handleInputChange("name", value)}
                     placeholder="Joanna"
                 />
                 <InputField
                     label="email"
                     labelText="Email"
-                    setValue={(value) => handleInputChange('email', value)}
+                    setValue={(value) => handleInputChange("email", value)}
                     type="email"
                     placeholder="JoannaSmith@OT.co.uk"
                 />
             </form>
             <div ref={emailCopyRef} className="w-11/12">
-                <EmailCopy copyText={getCopyText(template, extendedFormValues)} className="w-fit"/>
+                <EmailCopy copyText={getCopyText(template, extendedFormValues)} className="w-fit" />
             </div>
             <div className="flex flex-col border rounded-lg py-2 px-6 container items-center w-11/12 justify-center gap-3">
                 <OptionsContainer containerText="password options">
@@ -140,9 +148,9 @@ const General = ({handleSubmit, handleInputChange, formValues}: GeneralProps) =>
                         />
                     </div>
                 </OptionsContainer>
-                <CopyButton copyRef={emailCopyRef}/>
+                <CopyButton copyRef={emailCopyRef} />
+                <PasswordButton buttonText="New password" onClick={generateNewPassword} />
             </div>
-
         </div>
     );
 };
