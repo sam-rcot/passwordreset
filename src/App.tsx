@@ -22,33 +22,35 @@ function App() {
   return (
     <>
       <Router>
-        <nav className="flex justify-center">
-          <NavBar />
-        </nav>
-        <main className="flex min-h-screen w-full flex-col items-center justify-start bg-white pt-10 text-slate-900">
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <General
-                  handleSubmit={handleSubmit}
-                  handleInputChange={handleInputChange}
-                  formValues={formValues}
-                />
-              }
-            />
-            <Route
-              path="/stakeholder"
-              element={
-                <Stakeholder
-                  handleSubmit={handleSubmit}
-                  handleInputChange={handleInputChange}
-                  formValues={formValues}
-                />
-              }
-            />
-          </Routes>
-        </main>
+        <div className="flex h-screen flex-col">
+          <nav className="flex-shrink-0">
+            <NavBar />
+          </nav>
+          <main className="flex flex-grow items-center justify-center bg-white text-slate-900">
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <General
+                    handleSubmit={handleSubmit}
+                    handleInputChange={handleInputChange}
+                    formValues={formValues}
+                  />
+                }
+              />
+              <Route
+                path="/stakeholder"
+                element={
+                  <Stakeholder
+                    handleSubmit={handleSubmit}
+                    handleInputChange={handleInputChange}
+                    formValues={formValues}
+                  />
+                }
+              />
+            </Routes>
+          </main>
+        </div>
       </Router>
     </>
   );

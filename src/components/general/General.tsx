@@ -125,7 +125,7 @@ Kind Regards,
 Digital Team`;
 
   return (
-    <div className="flex w-full max-w-5xl flex-col items-center gap-3 px-4">
+    <div className="flex w-full max-w-5xl flex-grow flex-col items-center gap-3 px-4">
       <form
         className="flex w-full max-w-3xl shrink grow flex-col content-center items-center justify-center gap-5"
         onSubmit={handleSubmit}
