@@ -163,7 +163,7 @@ Digital Team`;
               labelText="Symbols"
               type="checkbox"
               className="border-0"
-              data-button-id="symbolsButton"
+              data-checkbox-id="symbolsCheckBox"
               onChange={(checked) =>
                 handleCheckBoxChange('symbolsCheckBox', checked)
               }
@@ -173,7 +173,7 @@ Digital Team`;
               labelText="Numbers"
               type="checkbox"
               className="border-0"
-              data-button-id="numbersCheckBox"
+              data-checkbox-id="numbersCheckBox"
               onChange={(checked) =>
                 handleCheckBoxChange('numbersCheckBox', checked)
               }
