@@ -23,7 +23,8 @@ const CheckBox = ({
   };
   const handleClick = () => {
     window.dataLayer.push({
-      event: "checkbox_click"
+      event: "checkbox_click",
+      clickText: labelText,
     });
   };
 
