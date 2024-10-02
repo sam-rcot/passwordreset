@@ -23,8 +23,16 @@ function App() {
   useEffect(() => {
     // Handle GTM event push based on cookie consent
     if (getCookieConsentValue() === "true") {
+      console.log("cookieConsent");
       window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ event: "cookieConsentGranted" });
+      window.dataLayer.push({
+        event: "consentUpdate",
+        ad_storage: "granted",
+        analytics_storage: "granted"
+      });
+
+      // Inform Clarity that consent has been granted
+      window.clarity("consent");
     }
   }, []);
 
@@ -63,14 +71,19 @@ function App() {
       </Router>
 
       {/* Cookie Consent Banner */}
+      import CookieConsent from "react-cookie-consent";
+
       <CookieConsent
         location="bottom"
         buttonText="I understand"
         declineButtonText="Decline"
         enableDeclineButton
         onAccept={() => {
+          // Grant consent to Clarity
+          window.clarity("consent");
+
+          // Inform GTM about consent granted for both ads and analytics storage
           window.dataLayer = window.dataLayer || [];
-          // Update the consent status to allow ad storage and analytics storage
           window.dataLayer.push({
             event: "consentUpdate",
             ad_storage: "granted",
@@ -78,8 +91,10 @@ function App() {
           });
         }}
         onDecline={() => {
-          window.dataLayer = window.dataLayer || [];
-          // Update the consent status to deny ad storage and analytics storage
+          // In case user declines, no cookies for Clarity or GTM
+          console.log("Cookies declined");
+
+          // Inform GTM that consent was denied
           window.dataLayer.push({
             event: "consentUpdate",
             ad_storage: "denied",
